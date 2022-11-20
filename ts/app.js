@@ -76,7 +76,6 @@ var tortoise = {
     typeofAnimal: "herbivore",
     amountOfFood: 300
 };
-// let animals:IAnimal[]=[leo,alligator,flamingo,parrot,monkey,eagle,tortoise]
 var enclosure1 = {
     id: 1,
     name: '1st enclosure',
@@ -114,13 +113,13 @@ function placeAnimals(animal, enclosure) {
 }
 function checkType(animal, animals) {
     for (var i = 0; i < animals.length; i++) {
-        // if ((animals[i].typeofAnimal=='predator' && animal.typeofAnimal=='herbivore') || (animals[i].typeofAnimal=='herbivore' && animal.typeofAnimal=='predator')) {
-        //     console.log(`This enclosure is not suitable for ${animal.name},because types of animals are opposite. `);
-        //     console.log('====================================');
-        // }
-        // else{
-        return animals.push(animal);
-        // }
+        if ((animals[i].typeofAnimal == 'predator' && animal.typeofAnimal == 'herbivore') || (animals[i].typeofAnimal == 'herbivore' && animal.typeofAnimal == 'predator')) {
+            console.log("This enclosure is not suitable for ".concat(animal.name, ",because types of animals are opposite. "));
+            console.log('====================================');
+        }
+        else {
+            animals.push(animal);
+        }
     }
     //    return animal && animals
 }
