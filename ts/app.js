@@ -102,9 +102,13 @@ var enclosure3 = {
 };
 function placeAnimals(animal, enclosure) {
     if (animal.isNeedforReservoir === enclosure.reservoir && animal.biome === enclosure.biome && animal.area <= enclosure.area) {
-        console.log("This enclosure is suitable for ".concat(animal.name, "."));
-        checkType(animal, enclosure.animals);
-        return "".concat(animal.name, " added to ").concat(enclosure.name);
+        if (checkType(animal, enclosure.animals)) {
+            console.log("This enclosure is suitable for ".concat(animal.name, "."));
+            return "".concat(animal.name, " added to ").concat(enclosure.name);
+        }
+        else {
+            return "".concat(animal.name, " wasn't added to ").concat(enclosure.name);
+        }
     }
     else {
         console.log("It is impossible to add \"".concat(animal.name, "\" to enclosure with ").concat(enclosure.area, "m area,").concat(enclosure.biome, " biome. "));
@@ -116,12 +120,11 @@ function checkType(animal, animals) {
         if ((animals[i].typeofAnimal == 'predator' && animal.typeofAnimal == 'herbivore') || (animals[i].typeofAnimal == 'herbivore' && animal.typeofAnimal == 'predator')) {
             console.log("This enclosure is not suitable for ".concat(animal.name, ",because types of animals are opposite. "));
             console.log('====================================');
-        }
-        else {
-            animals.push(animal);
+            return false;
         }
     }
-    //    return animal && animals
+    animals.push(animal);
+    return true;
 }
 console.log(placeAnimals(alligator, enclosure1));
 console.log(placeAnimals(monkey, enclosure3));
@@ -129,6 +132,7 @@ console.log(placeAnimals(leo, enclosure3));
 console.log(placeAnimals(tortoise, enclosure2));
 console.log(placeAnimals(parrot, enclosure2));
 console.log(placeAnimals(eagle, enclosure2));
+console.log(placeAnimals(monkey, enclosure2));
 console.log('====================================');
 function showAnimals(enclosure) {
     console.log("Animals in ".concat(enclosure.name, ":"));
