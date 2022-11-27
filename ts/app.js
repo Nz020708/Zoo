@@ -3,77 +3,98 @@ var leo = {
     id: 1,
     name: 'Leo',
     age: 60,
-    biome: 'savanna',
-    isNeedforReservoir: false,
-    area: 40,
-    fodder: 'meat',
-    typeofAnimal: "predator",
-    amountOfFood: 200
+    amountOfFood: 200,
+    typeAnm: {
+        id: 1,
+        biome: 'savanna',
+        isNeedforReservoir: false,
+        area: 40,
+        fodder: 'meat',
+        typeofAnimal: "predator"
+    }
 };
 var alligator = {
     id: 2,
     name: 'Tom',
     age: 85,
-    biome: 'lake',
-    isNeedforReservoir: true,
-    area: 30,
-    fodder: 'meat',
-    typeofAnimal: "predator",
+    typeAnm: {
+        id: 2,
+        biome: 'lake',
+        isNeedforReservoir: true,
+        area: 30,
+        fodder: 'meat',
+        typeofAnimal: "predator"
+    },
     amountOfFood: 300
 };
 var flamingo = {
     id: 3,
     name: 'Floggy',
     age: 40,
-    biome: 'lake',
-    isNeedforReservoir: true,
-    area: 30,
-    fodder: 'meat',
-    typeofAnimal: "herbivore",
+    typeAnm: {
+        id: 3,
+        biome: 'lake',
+        isNeedforReservoir: true,
+        area: 30,
+        fodder: 'meat',
+        typeofAnimal: "herbivore"
+    },
     amountOfFood: 200
 };
 var parrot = {
     id: 4,
     name: 'Paro',
     age: 24,
-    biome: 'forest',
-    isNeedforReservoir: false,
-    area: 15,
-    fodder: 'seed',
-    typeofAnimal: "herbivore",
+    typeAnm: {
+        id: 4,
+        biome: 'forest',
+        isNeedforReservoir: false,
+        area: 15,
+        fodder: 'seed',
+        typeofAnimal: "herbivore"
+    },
     amountOfFood: 150
 };
 var monkey = {
     id: 5,
     name: 'Walt',
     age: 53,
-    biome: 'forest',
-    isNeedforReservoir: false,
-    area: 22,
-    fodder: 'banana',
-    typeofAnimal: "herbivore",
+    typeAnm: {
+        id: 5,
+        biome: 'forest',
+        isNeedforReservoir: false,
+        area: 22,
+        fodder: 'banana',
+        typeofAnimal: "herbivore"
+    },
     amountOfFood: 320
 };
 var eagle = {
     id: 6,
     name: 'Eaggy',
     age: 105,
-    biome: 'forest',
-    isNeedforReservoir: false,
-    area: 90,
-    fodder: 'meat',
-    typeofAnimal: "predator",
+    typeAnm: {
+        id: 5,
+        biome: 'forest',
+        isNeedforReservoir: false,
+        area: 90,
+        fodder: 'meat',
+        typeofAnimal: "predator"
+    },
     amountOfFood: 500
 };
 var tortoise = {
     id: 7,
     name: 'Flippy',
     age: 135,
-    biome: 'lake',
-    isNeedforReservoir: true,
-    area: 50,
-    fodder: 'greens',
-    typeofAnimal: "herbivore",
+    typeAnm: {
+        id: 6,
+        biome: 'lake',
+        isNeedforReservoir: true,
+        area: 50,
+        fodder: 'greens',
+        typeofAnimal: "herbivore"
+    },
     amountOfFood: 300
 };
 var enclosure1 = {
@@ -101,7 +122,7 @@ var enclosure3 = {
     animals: []
 };
 function placeAnimals(animal, enclosure) {
-    if (animal.isNeedforReservoir === enclosure.reservoir && animal.biome === enclosure.biome && animal.area <= enclosure.area) {
+    if (animal.typeAnm.isNeedforReservoir === enclosure.reservoir && animal.typeAnm.biome === enclosure.biome && animal.typeAnm.area <= enclosure.area) {
         if (checkType(animal, enclosure.animals)) {
             console.log("This enclosure is suitable for ".concat(animal.name, "."));
             return "".concat(animal.name, " added to ").concat(enclosure.name);
@@ -117,7 +138,7 @@ function placeAnimals(animal, enclosure) {
 }
 function checkType(animal, animals) {
     for (var i = 0; i < animals.length; i++) {
-        if ((animals[i].typeofAnimal == 'predator' && animal.typeofAnimal == 'herbivore') || (animals[i].typeofAnimal == 'herbivore' && animal.typeofAnimal == 'predator')) {
+        if ((animals[i].typeAnm.typeofAnimal !== animal.typeAnm.typeofAnimal)) {
             console.log("This enclosure is not suitable for ".concat(animal.name, ",because types of animals are opposite. "));
             console.log('====================================');
             return false;
